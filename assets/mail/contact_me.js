@@ -20,9 +20,10 @@ $(function () {
             }
             $this = $("#sendMessageButton");
             $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+            
             $.ajax({
-                url: "/assets/mail/contact_me.php",
-                type: "POST",
+                url:'https://api.apispreadsheets.com/data/1731/',
+                type:'post',
                 data: {
                     name: name,
                     phone: phone,
@@ -30,8 +31,7 @@ $(function () {
                     message: message,
                 },
                 cache: false,
-                success: function () {
-                    // Success message
+                success: function(){
                     $("#success").html("<div class='alert alert-success'>");
                     $("#success > .alert-success")
                         .html(
@@ -39,14 +39,14 @@ $(function () {
                         )
                         .append("</button>");
                     $("#success > .alert-success").append(
-                        "<strong>Your message has been sent. </strong>"
+                        "<strong>Thank you! Your message has been sent. We shall get to you within 48 hours. </strong>"
                     );
                     $("#success > .alert-success").append("</div>");
                     //clear all fields
                     $("#contactForm").trigger("reset");
                 },
-                error: function () {
-                    // Fail message
+                error: function(){
+                   // Fail message
                     $("#success").html("<div class='alert alert-danger'>");
                     $("#success > .alert-danger")
                         .html(
@@ -57,7 +57,7 @@ $(function () {
                         $("<strong>").text(
                             "Sorry " +
                                 firstName +
-                                ", it seems that my mail server is not responding. Please try again later!"
+                                ", it seems that my mail server is not responding. Please try again later or try contacting us at mu.life.inc@gmail.com!"
                         )
                     );
                     $("#success > .alert-danger").append("</div>");
